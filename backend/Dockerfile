@@ -1,6 +1,6 @@
 FROM python:3.11-slim
 
-WORKDIR /app
+WORKDIR /backend
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -15,11 +15,11 @@ RUN apt-get update \
 
 # install python dependencies
 RUN python3 -m pip install --upgrade pip
-COPY requirements.txt .
+COPY ./requirements.txt .
 RUN python3 -m pip install -r requirements.txt
 
-# Creates a non-root user with an explicit UID and adds permission to access the /app folder
-RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+# Creates a non-root user with an explicit UID and adds permission to access the /backend folder
+RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /backend
 USER appuser
 
-COPY ./app /app
+COPY . /backend

@@ -1,1 +1,8 @@
+# Byte-compiled files
+__pycache__/
+
+# Environment files
+/backend/app/.env
+
+# IDE
 /.idea
