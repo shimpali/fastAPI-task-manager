@@ -25,7 +25,6 @@ The technology stack used for this application is as follows:
 - Development
     - flake8
     - black
-    - vscode
 
 ## Commands
 
@@ -52,3 +51,12 @@ The technology stack used for this application is as follows:
 ### PGAdmin:
 - http://localhost:5050/
 
+## DB
+
+## Run DB locally
+- docker-compose exec db psql -h localhost -U postgres --dbname=postgres
+- Try a few commands:
+  - \l - list all databases
+  - \d+ - list all tables (relations) in the current database
+  - \c postgres - connect to the postgres database
+  - \d table_name - describe any table and the associated columns
