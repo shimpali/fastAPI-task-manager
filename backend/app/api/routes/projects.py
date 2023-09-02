@@ -30,10 +30,12 @@ async def create_new_project(
         projects_repo: ProjectsRepository = Depends(get_repository(ProjectsRepository)),
 ) -> ProjectPublic:
     """
-    :param new_project:  If you want it to expect a JSON with a key new_project and inside of it the model contents,
-    as it does when you declare extra body parameters, you can use the special Body parameter embed
+    :param new_project: If you want it to expect a JSON with a key new_project and
+        inside of it the model contents, as it does when you declare extra body parameters,
+        you can use the special Body parameter embed
     :param projects_repo: The DB interface
-    :return: FastAPI automatically validates and converts the created_project to an instance of ProjectPublic model, and sends the appropriate JSON as a response.
+    :return: FastAPI automatically validates and converts the created_project to
+        an instance of ProjectPublic model, and sends the appropriate JSON as a response.
     """
     created_project = await projects_repo.create_project(new_project=new_project)
 
