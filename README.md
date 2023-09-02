@@ -15,7 +15,7 @@ The technology stack used for this application is as follows:
 - Database
     - Postgres
     - Alembic
-    - encode/databases
+    - [encode/databases](https://www.encode.io/databases/)
 - Authentication
     - Bcrypt
     - Passlib
