@@ -12,6 +12,9 @@ router = APIRouter()
 
 @router.get("/")
 async def get_all_projects() -> List[dict]:
+    """
+    :return: Mock response till the route has been implemented
+    """
     projects = [
         {"id": 1, "title": "Project 1", "description": "This is a web app project",
          "created_date": "2023-09-02T10:05:06.944969", "due_date": "2023-11-30T10:05:06.944969",
