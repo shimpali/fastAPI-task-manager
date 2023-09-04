@@ -38,7 +38,7 @@ The technology stack used for this application is as follows:
 - docker ps
 
 ### Execute bash commands from container interactively
-- docker exec -it container_id bash
+- docker exec -it [CONTAINER_ID] bash
 
 ### Run migrations inside the container's shell
 - alembic revision -m "message"
@@ -60,3 +60,10 @@ The technology stack used for this application is as follows:
   - \d+ - list all tables (relations) in the current database
   - \c postgres - connect to the postgres database
   - \d table_name - describe any table and the associated columns
+
+## Tests
+
+### Run tests within the running server container
+- docker ps
+- docker exec -it [CONTAINER_ID] bash
+- pytest -v
