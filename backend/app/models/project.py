@@ -1,6 +1,6 @@
 from typing import Optional
 from enum import Enum
-from datetime import date
+from datetime import datetime
 
 from app.models.core import IDModelMixin, CoreModel
 
@@ -18,8 +18,8 @@ class ProjectBase(CoreModel):
     """
     title: Optional[str]
     description: Optional[str]
-    created_date: Optional[date]
-    due_date: Optional[date]
+    created_date: Optional[datetime]
+    due_date: Optional[datetime]
     status: Optional[ProjectStatus]
 
 
@@ -29,7 +29,7 @@ class ProjectCreate(ProjectBase):
     """
     title: str
     description: str
-    due_date: date
+    due_date: datetime
 
 
 class ProjectUpdate(ProjectBase):
@@ -38,8 +38,8 @@ class ProjectUpdate(ProjectBase):
     """
     title: str
     description: str
-    created_date: date
-    due_date: date
+    created_date: datetime
+    due_date: datetime
     status: ProjectStatus
 
 
@@ -49,8 +49,8 @@ class ProjectInDB(IDModelMixin, ProjectBase):
     """
     title: str
     description: str
-    created_date: date
-    due_date: date
+    created_date: datetime
+    due_date: datetime
     status: ProjectStatus
 
 

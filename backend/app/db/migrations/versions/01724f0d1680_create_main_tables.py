@@ -32,9 +32,9 @@ def create_projects_table() -> None:
         sa.Column("id", sa.Integer, primary_key=True),
         sa.Column("title", sa.Text, nullable=False, index=True),
         sa.Column("description", sa.Text, nullable=True),
-        sa.Column("created_date", sa.TIMESTAMP, nullable=False, server_default=sa.func.now()),
-        sa.Column("due_date", sa.TIMESTAMP, nullable=False),
-        sa.Column("status", sa.Enum(ProjectStatus), server_default=ProjectStatus.not_started),
+        sa.Column("created_date", sa.TIMESTAMP(timezone=True), nullable=False, server_default=sa.func.now()),
+        sa.Column("due_date", sa.TIMESTAMP(timezone=True), nullable=False),
+        sa.Column("status", sa.Enum(ProjectStatus), nullable=False, server_default=ProjectStatus.not_started),
     )
 
 
