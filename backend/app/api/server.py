@@ -17,6 +17,8 @@ def get_application():
         allow_headers=["*"],
     )
 
+    # Ref - https://fastapi.tiangolo.com/advanced/events/
+    # TODO: startup and down events are deprecated, replace with lifespan
     tm_app.add_event_handler("startup", core_tasks.create_start_app_handler(tm_app))
     tm_app.add_event_handler("shutdown", core_tasks.create_stop_app_handler(tm_app))
 

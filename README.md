@@ -7,7 +7,7 @@ A simple task manager to implement a Kanban Board
 The technology stack used for this application is as follows:
 
 - Framework
-    - FastAPI and Starlette
+    - FastAPI and Starlette (A lightweight ASGI framework/toolkit, which is ideal for building async web services in Python. FastAPI is built on top of starlette)
 - ASGI Server
     - Uvicorn and Gunicorn
 - Containerization

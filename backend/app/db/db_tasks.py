@@ -18,8 +18,10 @@ async def connect_to_db(app: FastAPI) -> None:
         logger.warning("--- DB CONNECTION ERROR ---")
 
 
-# When the app shuts down, disconnect from the database to clean things up
 async def close_db_connection(app: FastAPI) -> None:
+    """
+    When the app shuts down, disconnect from the database to clean things up
+    """
     try:
         await app.state._db.disconnect()
     except Exception as e:
