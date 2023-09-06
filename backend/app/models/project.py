@@ -20,7 +20,7 @@ class ProjectBase(CoreModel):
     description: Optional[str]
     created_date: Optional[datetime]
     due_date: Optional[datetime]
-    status: Optional[ProjectStatus]
+    status: Optional[ProjectStatus] = 'not_started'
 
 
 class ProjectCreate(ProjectBase):
