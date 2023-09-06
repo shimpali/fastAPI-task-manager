@@ -7,6 +7,12 @@ CREATE_PROJECT_QUERY = """
     RETURNING id, title, description, created_date, due_date, status;
 """
 
+GET_PROJECT_BY_ID_QUERY = """
+    SELECT id, title, description, created_date, due_date, status
+    FROM projects
+    WHERE id = :id;
+"""
+
 
 class ProjectsRepository(BaseRepository):
     """"
@@ -14,7 +20,15 @@ class ProjectsRepository(BaseRepository):
     """
 
     async def create_project(self, *, new_project: ProjectCreate) -> ProjectInDB:
-        query_values = new_project.dict()
+        query_values = new_project.model_dump()
         project = await self.db.fetch_one(query=CREATE_PROJECT_QUERY, values=query_values)
+
+        return ProjectInDB(**project)
+
+    async def get_project_by_id(self, *, id: int) -> ProjectInDB:
+        project = await self.db.fetch_one(query=GET_PROJECT_BY_ID_QUERY, values={"id": id})
+
+        if not project:
+            return None
 
         return ProjectInDB(**project)

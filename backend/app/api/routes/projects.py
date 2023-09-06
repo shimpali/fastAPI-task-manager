@@ -1,7 +1,7 @@
 from typing import List, Annotated
 
-from fastapi import APIRouter, Body, Depends
-from starlette.status import HTTP_201_CREATED
+from fastapi import APIRouter, Body, Depends, HTTPException
+from starlette.status import HTTP_201_CREATED, HTTP_404_NOT_FOUND
 
 from app.models.project import ProjectCreate, ProjectPublic
 from app.db.repositories.projects import ProjectsRepository
@@ -42,3 +42,15 @@ async def create_new_project(
     created_project = await projects_repo.create_project(new_project=new_project)
 
     return created_project
+
+
+@router.get("/{id}/", response_model=ProjectPublic, name="projects:get-project-by-id")
+async def get_project_by_id(
+        id: int, projects_repo: ProjectsRepository = Depends(get_repository(ProjectsRepository))
+) -> ProjectPublic:
+    project = await projects_repo.get_project_by_id(id=id)
+
+    if not project:
+        raise HTTPException(status_code=HTTP_404_NOT_FOUND, detail="No project found with that id.")
+
+    return project

@@ -8,6 +8,10 @@ from fastapi import FastAPI
 from httpx import AsyncClient
 from databases import Database
 
+from app.models.project import ProjectCreate, ProjectInDB
+from app.db.repositories.projects import ProjectsRepository
+
+
 import alembic
 from alembic.config import Config
 
@@ -56,3 +60,17 @@ async def client(app: FastAPI) -> AsyncClient:
                 headers={"Content-Type": "application/json"}
         ) as client:
             yield client
+
+
+@pytest.fixture
+async def test_project(db: Database) -> ProjectInDB:
+    project_repo = ProjectsRepository(db)
+    new_project = ProjectCreate(
+        title='fake project',
+        description='fake project description',
+        created_date='2023-09-04T14:08:06.365',
+        due_date='2023-11-30T14:08:06.365',
+        status='not_started',
+    )
+
+    return await project_repo.create_project(new_project=new_project)
