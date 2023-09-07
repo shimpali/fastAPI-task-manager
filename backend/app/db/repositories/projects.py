@@ -75,7 +75,7 @@ class ProjectsRepository(BaseRepository):
             return None
 
         project_update_params = project.copy(
-            update=project_update.dict(exclude_unset=True, exclude_none=True),
+            update=project_update.model_dump(exclude_unset=True, exclude_none=True),
         )
         
         if project_update_params.status is None:
