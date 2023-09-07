@@ -36,11 +36,10 @@ class ProjectUpdate(ProjectBase):
     """
     Update - attributes that can be updated - used at PUT requests
     """
-    title: str
-    description: str
-    created_date: datetime
-    due_date: datetime
-    status: ProjectStatus
+    title: Optional[str] = None
+    description: Optional[str] = None
+    due_date: Optional[datetime] = None
+    status: Optional[ProjectStatus] = 'not_started'
 
 
 class ProjectInDB(IDModelMixin, ProjectBase):

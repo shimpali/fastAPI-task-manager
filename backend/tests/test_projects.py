@@ -46,7 +46,7 @@ class TestCreateProject:
          'status': 'in_progress'}
         res = await client.post( # TODO: Fix the below
             # app.url_path_for('projects:create-project'), json={'new_project': new_project.model_dump_json()}
-            app.url_path_for('projects:create-project'), json = {'new_project': project}
+            app.url_path_for('projects:create-project'), json={'new_project': project}
         )
         assert res.status_code == HTTP_201_CREATED
 
@@ -161,7 +161,7 @@ class TestUpdateProject:
             assert attr_to_change != getattr(test_project, attrs_to_change[i])
             assert attr_to_change == values[i]
         # Make sure that no other attributes' values have changed
-        for attr, value in updated_project.dict().items():
+        for attr, value in updated_project.model_dump().items():
             if attr not in attrs_to_change:
                 assert getattr(test_project, attr) == value
 

@@ -29,7 +29,7 @@ UPDATE_PROJECT_BY_ID_QUERY = """
         description  = :description,  
         due_date     = :due_date,  
         status       = :status  
-    WHERE id = :id  
+    WHERE id = :id 
     RETURNING id, title, description, created_date, due_date, status;  
 """
 
@@ -87,7 +87,7 @@ class ProjectsRepository(BaseRepository):
         try:
             updated_project = await self.db.fetch_one(
                 query=UPDATE_PROJECT_BY_ID_QUERY,
-                values=project_update_params.dict(),
+                values=project_update_params.model_dump(),
             )
             return ProjectInDB(**updated_project)
         except Exception as e:
